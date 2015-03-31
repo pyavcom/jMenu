@@ -11,7 +11,8 @@
 *************************************************************************/
 
 /** jMenu Plugin **/
-(function($) {
+(function ($) {
+    "use strict";
     $.jMenu = {
         /**************/
         /** OPTIONS **/
@@ -38,24 +39,23 @@
         /*****************/
         /** Init Method **/
         /*****************/
-        init: function(options) {
+        init: function (options) {
             /* vars **/
-            opts = $.extend({}, $.jMenu.defaults, options);
-
+            var opts = $.extend({}, $.jMenu.defaults, options), $width;
             // Set global width of the sub-menus links
-            if(opts.ulWidth == 'auto')
+            if (opts.ulWidth === 'auto') {
                 $width = $('.fNiv').outerWidth(false);
-            else
+            } else {
                 $width = opts.ulWidth;
+            }
 
 
-
-            $(".jMenu li").each(function() {
+            $(".jMenu li").each(function () {
                 var
                     $thisChild = $(this).find('a:first'),
                     $allUl = $(this).find('ul');
 
-                if($.jMenu._IsParent($thisChild))
+                if ($.jMenu._IsParent($thisChild))
                 {
                     $thisChild.addClass('isParent');
 
@@ -79,7 +79,7 @@ debugger;
 
                     if(!opts.openClick)
                         $(this).bind({
-                            mouseenter:function() {
+                            mouseenter:function () {
                                 if($(this).hasClass('jmenu-level-0')) {
 									$position = $(this).position();
 									$ul.css({
